@@ -72,7 +72,7 @@
     <div class="mb-3 fw-bold fs-3"><span class="text-success">ANTRIAN</span> P.SMA</div>
     <div class="border border-success rounded-2 py-2 mb-4">
       <!-- menampilkan informasi jumlah antrian -->
-      <h1 id="antrian" class="display-1 fw-bold text-success text-center lh-1 pb-2"></h1>
+      <h1 id="antrian_2" class="display-1 fw-bold text-success text-center lh-1 pb-2"></h1>
     </div>
     <!-- button pengambilan nomor antrian -->
     <a id="insert_2" href="javascript:void(0)" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">
@@ -109,13 +109,34 @@
       // proses insert data
       $('#insert').on('click', function() {
         $.ajax({
-          type: 'POST',                     // mengirim data dengan method POST
+          type: 'POST',                     // mengirim data dengan method POST data sekretariat
           url: 'insert.php',                // url file proses insert data
           success: function(result) {       // ketika proses insert data selesai
             // jika berhasil
             if (result === 'Sukses') {
               // tampilkan jumlah antrian
               $('#antrian').load('get_antrian.php').fadeIn('slow');
+            }
+          },
+        });
+      });
+    });
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      // tampilkan jumlah antrian
+      $('#antrian_2').load('get_antrian_2.php');
+
+      // proses insert data
+      $('#insert_2').on('click', function() {
+        $.ajax({
+          type: 'POST',                     // mengirim data dengan method POST data sma
+          url: 'insert_2.php',                // url file proses insert data
+          success: function(result) {       // ketika proses insert data selesai
+            // jika berhasil
+            if (result === 'Sukses') {
+              // tampilkan jumlah antrian
+              $('#antrian_2').load('get_antrian_2.php').fadeIn('slow');
             }
           },
         });
