@@ -57,10 +57,10 @@
     <div class="mb-3 fw-bold fs-3"><span class="text-success">ANTRIAN</span> SEKRETARIAT</div>
     <div class="border border-success rounded-2 py-2 mb-4">
       <!-- menampilkan informasi jumlah antrian -->
-      <h1 id="antrian" class="display-1 fw-bold text-success text-center lh-1 pb-2"></h1>
+      <h1 id="antrian_sek" class="display-1 fw-bold text-success text-center lh-1 pb-2"></h1>
     </div>
     <!-- button pengambilan nomor antrian -->
-    <a id="insert" href="javascript:void(0)" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">
+    <a id="insert_sek" href="javascript:void(0)" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">
       <i class="bi-person-plus fs-4 me-2"></i> Ambil Nomor
     </a>
   </div>
@@ -72,10 +72,10 @@
     <div class="mb-3 fw-bold fs-3"><span class="text-success">ANTRIAN</span> P.SMA</div>
     <div class="border border-success rounded-2 py-2 mb-4">
       <!-- menampilkan informasi jumlah antrian -->
-      <h1 id="antrian_2" class="display-1 fw-bold text-success text-center lh-1 pb-2"></h1>
+      <h1 id="antrian_sma" class="display-1 fw-bold text-success text-center lh-1 pb-2"></h1>
     </div>
     <!-- button pengambilan nomor antrian -->
-    <a id="insert_2" href="javascript:void(0)" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">
+    <a id="insert_sma" href="javascript:void(0)" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">
       <i class="bi-person-plus fs-4 me-2"></i> Ambil Nomor
     </a>
   </div>
@@ -101,42 +101,45 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 
+  <!-- Handler Section 1. Sekretariat -->
   <script type="text/javascript">
     $(document).ready(function() {
       // tampilkan jumlah antrian
-      $('#antrian').load('get_antrian.php');
+      $('#antrian_sek').load('get_antrian_sek.php');
 
       // proses insert data
-      $('#insert').on('click', function() {
+      $('#insert_sek').on('click', function() {
         $.ajax({
           type: 'POST',                     // mengirim data dengan method POST data sekretariat
-          url: 'insert.php',                // url file proses insert data
+          url: 'insert_sek.php',                // url file proses insert data
           success: function(result) {       // ketika proses insert data selesai
             // jika berhasil
             if (result === 'Sukses') {
               // tampilkan jumlah antrian
-              $('#antrian').load('get_antrian.php').fadeIn('slow');
+              $('#antrian_sek').load('get_antrian_sek.php').fadeIn('slow');
             }
           },
         });
       });
     });
   </script>
+
+  <!-- Handler Section 2. P.SMA -->
   <script type="text/javascript">
     $(document).ready(function() {
       // tampilkan jumlah antrian
-      $('#antrian_2').load('get_antrian_2.php');
+      $('#antrian_sma').load('get_antrian_sma.php');
 
       // proses insert data
-      $('#insert_2').on('click', function() {
+      $('#insert_sma').on('click', function() {
         $.ajax({
           type: 'POST',                     // mengirim data dengan method POST data sma
-          url: 'insert_2.php',                // url file proses insert data
+          url: 'insert_sma.php',                // url file proses insert data
           success: function(result) {       // ketika proses insert data selesai
             // jika berhasil
             if (result === 'Sukses') {
               // tampilkan jumlah antrian
-              $('#antrian_2').load('get_antrian_2.php').fadeIn('slow');
+              $('#antrian_sma').load('get_antrian_sma.php').fadeIn('slow');
             }
           },
         });
