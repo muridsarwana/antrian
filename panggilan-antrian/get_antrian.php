@@ -9,7 +9,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH
   $tanggal = gmdate("Y-m-d", time() + 60 * 60 * 7);
 
   // sql statement untuk menampilkan data dari tabel "tbl_antrian" berdasarkan "tanggal"
-  $query = mysqli_query($mysqli, "SELECT id, no_antrian, status FROM tbl_antrian 
+  $query = mysqli_query($mysqli, "SELECT id, CONCAT(no_antrian, ' - ', kode_bidang) AS no_antrian, status FROM tbl_antrian 
                                   WHERE tanggal='$tanggal'")
                                   or die('Ada kesalahan pada query tampil data : ' . mysqli_error($mysqli));
   // ambil jumlah baris data hasil query
@@ -21,11 +21,26 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH
     $response         = array();
     $response["data"] = array();
 
+    // create mapping array for kode_bidang values
+    $kode_bidang_map = array(
+      1 => 'sekretariat',
+      2 => 'pembinaan s m a',
+      3 => 'pembinaan s m k',
+      4 => 'pembinaan diksus',
+      5 => 'Pembinaan kebudayaan',
+      6 => 'ketenagaan'
+    );
+
     // ambil data hasil query
     while ($row = mysqli_fetch_assoc($query)) {
-      $data['id']         = $row["id"];
-      $data['no_antrian'] = $row["no_antrian"];
-      $data['status']     = $row["status"];
+      $data['id']           = $row["id"];
+      $data['no_antrian']   = $row["no_antrian"];
+      $data['status']       = $row["status"];
+
+      // replace kode_bidang value with corresponding label
+      $no_antrian_parts = explode(' - ', $data['no_antrian']);
+      $kode_bidang = $no_antrian_parts[1];
+      $data['no_antrian'] = $no_antrian_parts[0] . ' - ' . $kode_bidang_map[$kode_bidang];
 
       array_push($response["data"], $data);
     }

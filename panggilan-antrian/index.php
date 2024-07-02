@@ -221,6 +221,7 @@
               };
               return btn;
             }
+
           },
         ],
         "order": [
@@ -248,7 +249,7 @@
 
         // mainkan suara nomor antrian
         setTimeout(function() {
-          responsiveVoice.speak("Nomor Antrian, " + data["no_antrian"] + ", menuju, loket, 1", "Indonesian Male", {
+          responsiveVoice.speak("Nomor Antrian, " + data["no_antrian"] + ", menuju, loket, pelayanan", "Indonesian Male", {
             rate: 0.9,
             pitch: 1,
             volume: 1
