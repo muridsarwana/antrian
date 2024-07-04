@@ -3,22 +3,36 @@ $tmpdir = sys_get_temp_dir();   # ambil direktori temporary untuk simpan file.
 $file =  tempnam($tmpdir, 'ctk');  # nama file temporary yang akan dicetak
 $handle = fopen($file, 'w');
 $condensed = Chr(27) . Chr(33) . Chr(4);
-$bold1 = Chr(27) . Chr(69);
-$bold0 = Chr(27) . Chr(70);
-$initialized = chr(27).chr(64);
+$initialized = chr(27) . chr(64);
 $condensed1 = chr(15);
 $condensed0 = chr(18);
+$bold1 = Chr(27) . Chr(69);
+$bold0 = Chr(27) . Chr(70);
+$centerAlign = Chr(27) . Chr(97) . Chr(1);
+$doubleHeight = Chr(27) . Chr(4);
+$normalHeight = Chr(27) . Chr(5);
+
 $Data  = $initialized;
 $Data .= $condensed1;
+$Data .= $centerAlign; // Set alignment to center
+$Data .= $bold1; // Set bold on
+$Data .= "\n";
+$Data .= "\n";
+$Data .= "\n";
+$Data .= "* NOMOR-ANTRIAN *\n";
 $Data .= "==========================\n";
-$Data .= "|     ".$bold1."AKU LAPAR".$bold0."      |\n";
+$Data .= "Pelayanan Sekretariat\n";
+$Data .= "\n";
+$Data .= $doubleHeight . "004\n" . $normalHeight;
+$Data .= "\n";
 $Data .= "==========================\n";
-$Data .= "aku lapar buk, aku lapar\n";
-$Data .= "Pengen makan yang enak buk\n";
-$Data .= "contohnya mungkin, mie instan\n";
-$Data .= "somay di deket kantor juga enak\n";
-$Data .= "jangan gorengan mulu bukkkk\n";
-$Data .= "tapi kalau ada enggak nolak\n";
+$Data .= $bold0; // Set bold off
+$Data .= "Senin, 8 Juli 2024\n";
+$Data .= "09.15 WIB\n";
+$Data .= "\n";
+$Data .= "\n";
+$Data .= "\n";
+$Data .= "\n";
 $Data .= "--------------------------\n";
 fwrite($handle, $Data);
 fclose($handle);

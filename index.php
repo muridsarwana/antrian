@@ -29,76 +29,83 @@
   <main class="flex-shrink-0">
     <div class="container pt-5">
       <!-- tampilkan pesan selamat datang -->
-        <div class="alert alert-light d-flex align-items-center mb-5" role="alert">
-            <i class="bi-info-circle text-success me-3 fs-3"></i>
-            <div>
-            Selamat Datang di <strong>Aplikasi Antrian Berbasis Web</strong>. Silahkan pilih halaman yang ingin ditampilkan.
+      <div class="alert alert-light d-flex align-items-center mb-5" role="alert">
+        <i class="bi-info-circle text-success me-3 fs-3"></i>
+        <div>
+        Selamat Datang di <strong>Aplikasi Antrian Berbasis Web</strong>. Silahkan pilih halaman yang ingin ditampilkan.
+        </div>
+      </div>
+
+      <div class="row gx-5">
+        <!-- link halaman nomor antrian -->
+        <div class="col-lg-6 mb-4">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-5">
+              <div class="feature-icon-1 bg-success bg-gradient mb-4">
+                <i class="bi-people"></i>
+              </div>
+              <h3>Nomor Antrian</h3>
+              <p class="mb-4">Halaman Nomor Antrian digunakan pengunjung untuk mengambil nomor antrian.</p>
+              <a href="nomor-antrian" class="btn btn-success rounded-pill px-4 py-2">Tampilkan <i class="bi-chevron-right ms-2"></i></a>
             </div>
+          </div>
         </div>
 
-        <div class="row gx-5">
-            <!-- link halaman nomor antrian -->
-            <div class="col-lg-6 mb-4">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-body p-5">
-                        <div class="feature-icon-1 bg-success bg-gradient mb-4">
-                            <i class="bi-people"></i>
-                        </div>
-                        <h3>Nomor Antrian</h3>
-                        <p class="mb-4">Halaman Nomor Antrian digunakan pengunjung untuk mengambil nomor antrian.</p>
-                        <a href="nomor-antrian" class="btn btn-success rounded-pill px-4 py-2">Tampilkan <i class="bi-chevron-right ms-2"></i></a>
-                    </div>
-                </div>
+        <!-- link halaman panggilan antrian -->
+        <div class="col-lg-6 mb-4">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-5">
+              <div class="feature-icon-1 bg-success bg-gradient mb-4">
+                <i class="bi-mic"></i>
+              </div>
+              <h3>Panggilan Antrian</h3>
+              <p class="mb-4">Halaman Panggilan Antrian digunakan petugas loket untuk memanggil antrian pengunjung.</p>
+              <a href="panggilan-antrian" class="btn btn-success rounded-pill px-4 py-2">Tampilkan <i class="bi-chevron-right ms-2"></i></a>
             </div>
-
-            <!-- link halaman panggilan antrian -->
-            <div class="col-lg-6 mb-4">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-body p-5">
-                        <div class="feature-icon-1 bg-success bg-gradient mb-4">
-                            <i class="bi-mic"></i>
-                        </div>
-                        <h3>Panggilan Antrian</h3>
-                        <p class="mb-4">Halaman Panggilan Antrian digunakan petugas loket untuk memanggil antrian pengunjung.</p>
-                        <a href="panggilan-antrian" class="btn btn-success rounded-pill px-4 py-2">Tampilkan <i class="bi-chevron-right ms-2"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- link halaman stream antrian -->
-            <div class="col-lg-6 mb-4">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-body p-5">
-                        <div class="feature-icon-1 bg-success bg-gradient mb-4">
-                            <i class="bi-mic"></i>
-                        </div>
-                        <h3>Live Stream Antrian</h3>
-                        <p class="mb-4">Halaman Informasi Antrian saat ini. <strong>(under construction)!</strong></p>
-                        <a href="stream-antrian" class="btn btn-success rounded-pill px-4 py-2">Tampilkan <i class="bi-chevron-right ms-2"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- button test print antrian -->
-            <div class="col-lg-6 mb-4">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-body p-5">
-                        <div class="feature-icon-1 bg-success bg-gradient mb-4">
-                            <i class="bi-mic"></i>
-                        </div>
-                        <h3>Button Test Print Antrian</h3>
-                        <p class="mb-4">Tombol untuk coba printer thermal<strong>(under construction)!</strong></p>
-                        <a href="do_print.php" class="btn btn-success rounded-pill px-4 py-2">PRINT.! <i class="bi-chevron-right ms-2"></i></a>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <!-- link halaman stream antrian -->
+        <div class="col-lg-6 mb-4">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-5">
+              <div class="feature-icon-1 bg-success bg-gradient mb-4">
+                <i class="bi-mic"></i>
+              </div>
+              <h3>Live Stream Antrian</h3>
+              <p class="mb-4">Halaman Informasi Antrian saat ini. <strong>(under construction)!</strong></p>
+              <a href="stream-antrian" class="btn btn-success rounded-pill px-4 py-2">Tampilkan <i class="bi-chevron-right ms-2"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- button test print antrian -->
+        <div class="col-lg-6 mb-4">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-5">
+              <div class="feature-icon-1 bg-success bg-gradient mb-4">
+                <i class="bi-mic"></i>
+              </div>
+              <h3>Button Test Print Antrian</h3>
+              <p class="mb-4">Tombol untuk coba printer thermal<strong>(under construction)!</strong></p>
+              <button class="btn btn-success rounded-pill px-4 py-2" id="print-button">PRINT dan ucapkan DOA <i class="bi-chevron-right ms-2"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
   <!-- Popper and Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+  <script>
+    document.getElementById('print-button').addEventListener('click', function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'do_print.php', true);
+        xhr.send();
+    });
+</script>
 </body>
 
 </html>
