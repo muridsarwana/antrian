@@ -169,3 +169,7 @@ table.table-bordered.dataTable th {
   background-color: #00aa9d;
   border-color: #00aa9d;
 }
+
+.container {
+  max-width: 95%; /* adjust the width to 95% */
+}
