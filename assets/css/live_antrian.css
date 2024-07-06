@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+}
+
+.container {
+    display: grid; /* use CSS Grid */
+    grid-template-rows: auto 1fr auto; /* define three rows: header, content, footer */
+    grid-template-columns: 1fr; /* define one column */
+    margin: 0 auto; /* center container horizontally */
+    /* padding: 20px; */
+    background-color: #fff;
+    /* border: 1px solid #fa0202; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    height: 100vh;
+}
+
+.header {
+    grid-row: 1; /* place header in first row */
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.display-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 1px solid #1900ff;
+    margin-top: auto;
+    margin-bottom: auto;
+    grid-row: 2;
+}
+
+.loket {
+    width: 30%;
+    margin: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #00ff95;
+    padding: 0px;
+    text-align: center;
+}
+
+.loket h5 {
+    flex: 1; /* take up 1/3 of the height */
+    font-size: 24px;
+    /* margin-bottom: 10px; */
+    padding: 10px; /* add padding to h5 */
+    background-color: #f0f0f0; /* add background color to h5 */
+    border: 1px solid #ff0000; /* add border bottom to h5 */
+    margin-top: 0; /* add this line */
+}
+
+.loket p {
+    font-size: 18px; /* reduce font size */
+    text-align: center; /* center horizontally */
+    margin: 0; /* remove default margin */
+    padding: 15px; /* add some padding */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    border: 1px solid #ff0000;
+}
+
+.news-ticker{
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    align-self: flex-end;
+}
+
+marquee {
+    font-size: 16px;
+    color: #fff;
+}

@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 100%; /* add max-width */
+    max-height: 100%; /* add max-height */
+    margin: 0 auto;
+    padding: 0px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* add overflow-y */
+}
+
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.display-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 1px solid #ff0000;
+}
+
+.loket {
+    width: calc(33.333% - 40px); /* adjust width for 3 columns */
+    margin: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    /* padding: 10px; */
+    text-align: center;
+    display: flex; /* add flexbox layout */
+    flex-direction: column; /* stack elements vertically */
+}
+
+.loket h5 {
+    flex: 1; /* take up 1/3 of the height */
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding: 10px; /* add padding to h5 */
+    background-color: #f0f0f0; /* add background color to h5 */
+    border-bottom: 1px solid #ff0000; /* add border bottom to h5 */
+    margin-top: 0; /* add this line */
+}
+
+.loket p {
+    flex: 2; /* take up 2/3 of the height */
+    font-size: 42px;
+    padding: 5px 10px; /* reduce padding to 5px top/bottom and 10px left/right */
+}
+
+.news-ticker {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+marquee {
+    font-size: 16px;
+    color: #fff;
+}

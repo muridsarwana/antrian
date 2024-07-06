@@ -29,15 +29,13 @@
         </div>
       </div>
 
-      <div class="row gx-3">
+      <div class="row gx-3 mx-auto">
         <!-- Card 1 -->
         <div class="col-md-4 mb-4">
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body p-5">
-              <!-- blank card -->
-                <div>
-                    Sing <strong>GEDE</strong>
-                </div>
+              <h5>Loket 1</h5>
+              <p><code>SEK</code> 000</p>
             </div>
           </div>
         </div>
@@ -46,10 +44,8 @@
         <div class="col-md-4 mb-4">
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body p-5">
-              <!-- blank card -->
-                <div>
-                    Sing <strong>GEDE</strong>
-                </div>
+              <h5>Loket 2</h5>
+              <p><code>SMA</code> 000</p>
             </div>
           </div>
         </div>
@@ -58,10 +54,8 @@
         <div class="col-md-4 mb-4">
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body p-5">
-              <!-- blank card -->
-                <div>
-                    Sing <strong>GEDE</strong>
-                </div>
+              <h5>Loket 3</h5>
+              <p><code>SMK</code> 000</p>
             </div>
           </div>
         </div>
@@ -70,10 +64,8 @@
         <div class="col-md-4 mb-4">
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body p-5">
-              <!-- blank card -->
-                <div>
-                    Sing <strong>GEDE</strong>
-                </div>
+              <h5>Loket 4</h5>
+              <p><code>SLB</code> 000</p>
             </div>
           </div>
         </div>
@@ -82,10 +74,8 @@
         <div class="col-md-4 mb-4">
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body p-5">
-              <!-- blank card -->
-                <div>
-                    Sing <strong>GEDE</strong>
-                </div>
+              <h5>Loket 5</h5>
+              <p><code>BUD</code> 000</p>
             </div>
           </div>
         </div>
@@ -94,10 +84,8 @@
         <div class="col-md-4 mb-4">
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body p-5">
-              <!-- blank card -->
-                <div>
-                    Sing <strong>GEDE</strong>
-                </div>
+              <h5>Loket 6</h5>
+              <p><code>KET</code> 000</p>
             </div>
           </div>
         </div>
