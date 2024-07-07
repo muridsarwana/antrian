@@ -196,7 +196,7 @@
       // proses insert data
       $('#insert_2sma').on('click', function() {
         $.ajax({
-          type: 'POST',                     // mengirim data dengan method POST data sma
+          type: 'POST',                     // mengirim data dengan method POST data sekretariat
           url: 'insert_2sma.php',                // url file proses insert data
           success: function(result) {       // ketika proses insert data selesai
             // jika berhasil
@@ -205,6 +205,19 @@
               $('#antrian_2sma').load('get_antrian_2sma.php').fadeIn('slow');
             }
           },
+        });
+      });
+      // proses print antrian
+      $('#insert_2sma').on('click', function() {
+        var x_value = 'PEMBINAAN SMA';
+        var y_value = $('#antrian_2sma').text();
+        $.ajax({
+          type: 'GET',
+          url: 'print_antrian.php',
+          data: { x: x_value, y: y_value },
+          success: function() {
+          console.log('Printout generated successfully!');
+          }
         });
       });
     });
@@ -219,7 +232,7 @@
       // proses insert data
       $('#insert_3smk').on('click', function() {
         $.ajax({
-          type: 'POST',                     // mengirim data dengan method POST data sma
+          type: 'POST',                     // mengirim data dengan method POST data sekretariat
           url: 'insert_3smk.php',                // url file proses insert data
           success: function(result) {       // ketika proses insert data selesai
             // jika berhasil
@@ -228,6 +241,19 @@
               $('#antrian_3smk').load('get_antrian_3smk.php').fadeIn('slow');
             }
           },
+        });
+      });
+      // proses print antrian
+      $('#insert_3smk').on('click', function() {
+        var x_value = 'PEMBINAAN SMK';
+        var y_value = $('#antrian_3smk').text();
+        $.ajax({
+          type: 'GET',
+          url: 'print_antrian.php',
+          data: { x: x_value, y: y_value },
+          success: function() {
+          console.log('Printout generated successfully!');
+          }
         });
       });
     });
@@ -242,7 +268,7 @@
       // proses insert data
       $('#insert_4slb').on('click', function() {
         $.ajax({
-          type: 'POST',                     // mengirim data dengan method POST data sma
+          type: 'POST',                     // mengirim data dengan method POST data sekretariat
           url: 'insert_4slb.php',                // url file proses insert data
           success: function(result) {       // ketika proses insert data selesai
             // jika berhasil
@@ -251,6 +277,19 @@
               $('#antrian_4slb').load('get_antrian_4slb.php').fadeIn('slow');
             }
           },
+        });
+      });
+      // proses print antrian
+      $('#insert_4slb').on('click', function() {
+        var x_value = 'PEMBINAAN DIKSUS';
+        var y_value = $('#antrian_4slb').text();
+        $.ajax({
+          type: 'GET',
+          url: 'print_antrian.php',
+          data: { x: x_value, y: y_value },
+          success: function() {
+          console.log('Printout generated successfully!');
+          }
         });
       });
     });
@@ -265,7 +304,7 @@
       // proses insert data
       $('#insert_5bud').on('click', function() {
         $.ajax({
-          type: 'POST',                     // mengirim data dengan method POST data sma
+          type: 'POST',                     // mengirim data dengan method POST data sekretariat
           url: 'insert_5bud.php',                // url file proses insert data
           success: function(result) {       // ketika proses insert data selesai
             // jika berhasil
@@ -274,6 +313,19 @@
               $('#antrian_5bud').load('get_antrian_5bud.php').fadeIn('slow');
             }
           },
+        });
+      });
+      // proses print antrian
+      $('#insert_5bud').on('click', function() {
+        var x_value = 'PEMBINAAN KEBUDAYAAN';
+        var y_value = $('#antrian_5bud').text();
+        $.ajax({
+          type: 'GET',
+          url: 'print_antrian.php',
+          data: { x: x_value, y: y_value },
+          success: function() {
+          console.log('Printout generated successfully!');
+          }
         });
       });
     });
@@ -288,7 +340,7 @@
       // proses insert data
       $('#insert_6ket').on('click', function() {
         $.ajax({
-          type: 'POST',                     // mengirim data dengan method POST data sma
+          type: 'POST',                     // mengirim data dengan method POST data sekretariat
           url: 'insert_6ket.php',                // url file proses insert data
           success: function(result) {       // ketika proses insert data selesai
             // jika berhasil
@@ -297,6 +349,19 @@
               $('#antrian_6ket').load('get_antrian_6ket.php').fadeIn('slow');
             }
           },
+        });
+      });
+      // proses print antrian
+      $('#insert_6ket').on('click', function() {
+        var x_value = 'KETENAGAAN';
+        var y_value = $('#antrian_6ket').text();
+        $.ajax({
+          type: 'GET',
+          url: 'print_antrian.php',
+          data: { x: x_value, y: y_value },
+          success: function() {
+          console.log('Printout generated successfully!');
+          }
         });
       });
     });

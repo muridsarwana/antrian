@@ -1,14 +1,3 @@
-<!-- Aplikasi Antrian Berbasis Web 
-**********************************************
-* Developer   : Indra Styawantoro
-* Company     : Indra Studio
-* Release     : Juni 2021
-* Update      : -
-* Website     : www.indrasatya.com
-* E-mail      : indra.setyawantoro@gmail.com
-* WhatsApp    : +62-821-8686-9898
--->
-
 <!doctype html>
 <html lang="en" class="h-100">
 
@@ -16,8 +5,6 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Aplikasi Antrian Berbasis Web">
-  <meta name="author" content="Indra Styawantoro">
 
   <!-- Title -->
   <title>Aplikasi Antrian Berbasis Web</title>
@@ -54,7 +41,6 @@
         <div class="ms-5 ms-md-0 pt-md-3 pb-md-0">
           <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="http://www.indrasatya.com/"><i class="bi-house-fill text-success"></i></a></li>
               <li class="breadcrumb-item" aria-current="page">Dashboard</li>
               <li class="breadcrumb-item" aria-current="page">Antrian</li>
             </ol>
@@ -128,7 +114,32 @@
           </div>
         </div>
       </div>
-
+      <!-- Add a dropdown list to filter by Kode Bidang -->
+      <div class="col-md-3 mb-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-start">
+              <div class="feature-icon-3 me-4">
+                <i class="bi-filter"></i>
+              </div>
+              <div>
+                <p class="mb-0">Filter by Kode Bidang:</p>
+                <select id="kode-bidang-filter" class="form-select">
+                  <option value="">All</option>
+                  <!-- Populate the options from your database -->
+                  <?php
+                  $kode_bidang_options = array('1', '2', '3', '4', '5', '6');
+                  foreach ($kode_bidang_options as $option) {
+                    echo "<option value='$option'>$option</option>";
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- tabel antrian -->
       <div class="card border-0 shadow-sm">
         <div class="card-body p-4">
           <div class="table-responsive">
@@ -137,6 +148,7 @@
                 <tr>
                   <th>Nomor Antrian</th>
                   <th>Status</th>
+                  <th>Kode Bidang</th>
                   <th>Panggil</th>
                 </tr>
               </thead>
@@ -148,15 +160,12 @@
   </main>
 
   <!-- Footer -->
-  <footer class="footer mt-auto py-4">
+  <!-- <footer class="footer mt-auto py-4">
     <div class="container">
       <hr class="my-4">
-      <!-- copyright -->
-      <div class="copyright text-center mb-2 mb-md-0">
-        &copy; 2021 - <a href="https://www.indrasatya.com/" target="_blank" class="text-danger text-decoration-none">www.indrasatya.com</a>. All rights reserved.
-      </div>
+      
     </div>
-  </footer>
+  </footer> -->
 
   <!-- load file audio bell antrian -->
   <audio id="tingtung" src="../assets/audio/tingtung.mp3"></audio>
@@ -182,10 +191,16 @@
       $('#antrian-selanjutnya').load('get_antrian_selanjutnya.php');
       $('#sisa-antrian').load('get_sisa_antrian.php');
 
+      // Add an event listener to the filter dropdown list
+      $('#kode-bidang-filter').on('change', function() {
+        var kode_bidang = $(this).val();
+        table.column(2).search(kode_bidang).draw();
+      });
+
       // menampilkan data antrian menggunakan DataTables
       var table = $('#tabel-antrian').DataTable({
         "lengthChange": false,              // non-aktifkan fitur "lengthChange"
-        "searching": false,                 // non-aktifkan fitur "Search"
+        "searching": true,                 // non-aktifkan fitur "Search"
         "ajax": "get_antrian.php",          // url file proses tampil data dari database
         // menampilkan data
         "columns": [{
@@ -196,6 +211,11 @@
           {
             "data": "status",
             "visible": false
+          },
+          {
+            "data": "kode_bidang",
+            "width": '150px',
+            "className": 'text-center'
           },
           {
             "data": null,

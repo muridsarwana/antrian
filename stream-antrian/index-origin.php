@@ -141,15 +141,28 @@
  
   <script type="text/javascript">
   $(document).ready(function() {
+    // tampilkan informasi antrian
+    $('#gts_1').load('gts.php');
+    $('#gts_2').load('gts2.php');
+    $('#gts_3').load('gts3.php');
+    $('#gts_4').load('gts4.php');
+    $('#gts_5').load('gts5.php');
+    $('#gts_6').load('gts6.php');
 
-    // reload PHP files every second
+    // proses update data
+    $.ajax({
+      type: "POST",               // mengirim data dengan method POST
+      url: "update.php",          // url file proses update data
+      data: { id: id }            // tentukan data yang dikirim
+    });
+
+    // auto reload data antrian setiap 1 detik untuk menampilkan data secara realtime
     setInterval(function() {
-      $('#gts_1').load('gts.php');
-      $('#gts_2').load('gts2.php');
-      $('#gts_3').load('gts3.php');
-      $('#gts_4').load('gts4.php');
-      $('#gts_5').load('gts5.php');
-      $('#gts_6').load('gts6.php');
+      $('#gts_1, #gts_2, #gts_3, #gts_4, #gts_5, #gts_6').stop(true, true).fadeOut("fast", function() {
+        $(this).load(function() {
+          $(this).stop(true, true).fadeIn("slow");
+        });
+      });
     }, 1000);
   });
 </script>
