@@ -58,7 +58,7 @@
               <!-- 2. Pembinaan SMA -->
               <div class="card border-5 shadow-sm mb-4 border-success">
                 <div class="card-body text-center p-3">
-                  <div class="mb-3 fw-bold fs-3"><span class="text-success">ANTRIAN</span> SEKRETARIAT</div>
+                  <div class="mb-3 fw-bold fs-3"><span class="text-success">ANTRIAN</span> PEMBINAAN SMA</div>
                   <div class="border border-success rounded-2 py-0 mb-4">
                     <!-- menampilkan informasi jumlah antrian -->
                     <h1 id="gts_2" class="display-1 fw-bold text-success text-center lh-1 pb-2"></h1>
@@ -70,7 +70,7 @@
               <!-- 3. Pembinaan SMK -->
               <div class="card border-5 shadow-sm mb-4 border-success">
                 <div class="card-body text-center p-3">
-                  <div class="mb-3 fw-bold fs-3"><span class="text-success">ANTRIAN</span> SEKRETARIAT</div>
+                  <div class="mb-3 fw-bold fs-3"><span class="text-success">ANTRIAN</span> PEMBINAAN SMK</div>
                   <div class="border border-success rounded-2 py-0 mb-4">
                     <!-- menampilkan informasi jumlah antrian -->
                     <h1 id="gts_3" class="display-1 fw-bold text-success text-center lh-1 pb-2"></h1>
@@ -86,7 +86,7 @@
               <!-- 4. Pembinaan DIKSUS -->
               <div class="card border-5 shadow-sm mb-4 border-success">
                 <div class="card-body text-center p-3">
-                  <div class="mb-3 fw-bold fs-3"><span class="text-success">ANTRIAN</span> SEKRETARIAT</div>
+                  <div class="mb-3 fw-bold fs-3"><span class="text-success">ANTRIAN</span> PEMBINAAN DIKSUS</div>
                   <div class="border border-success rounded-2 py-0 mb-4">
                     <!-- menampilkan informasi jumlah antrian -->
                     <h1 id="gts_4" class="display-1 fw-bold text-success text-center lh-1 pb-2"></h1>
@@ -98,7 +98,7 @@
               <!-- 5. Pembinaan Kebudayaan -->
               <div class="card border-5 shadow-sm mb-4 border-success">
                 <div class="card-body text-center p-3">
-                  <div class="mb-3 fw-bold fs-3"><span class="text-success">ANTRIAN</span> SEKRETARIAT</div>
+                  <div class="mb-3 fw-bold fs-3"><span class="text-success">ANTRIAN</span> PEMBINAAN KEBUDAYAAN</div>
                   <div class="border border-success rounded-2 py-0 mb-4">
                     <!-- menampilkan informasi jumlah antrian -->
                     <h1 id="gts_5" class="display-1 fw-bold text-success text-center lh-1 pb-2"></h1>
@@ -110,7 +110,7 @@
               <!-- 6. Ketenagaan -->
               <div class="card border-5 shadow-sm mb-4 border-success">
                 <div class="card-body text-center p-3">
-                  <div class="mb-3 fw-bold fs-3"><span class="text-success">ANTRIAN</span> SEKRETARIAT</div>
+                  <div class="mb-3 fw-bold fs-3"><span class="text-success">ANTRIAN</span> KETENAGAAN</div>
                   <div class="border border-success rounded-2 py-0 mb-4">
                     <!-- menampilkan informasi jumlah antrian -->
                     <h1 id="gts_6" class="display-1 fw-bold text-success text-center lh-1 pb-2"></h1>
