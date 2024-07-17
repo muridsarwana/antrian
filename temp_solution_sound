@@ -1,0 +1,83 @@
+$(document).ready(function() {
+  var previousValues = {};
+  var soundPlaying = false; // flag to indicate whether a sound is playing
+
+  // reload PHP files every second
+  setInterval(function() {
+    $('#gts_1').load('gts.php', function(response, status, xhr) {
+      var currentValue = $(this).text();
+      if (previousValues['gts_1'] !== currentValue) {
+        if (!soundPlaying) { // check if a sound is not already playing
+          playSound('audio/test_sound.mp3');
+          previousValues['gts_1'] = currentValue;
+          soundPlaying = true; // set the flag to true
+        }
+      }
+    });
+
+    $('#gts_2').load('gts2.php', function(response, status, xhr) {
+      var currentValue = $(this).text();
+      if (previousValues['gts_2'] !== currentValue) {
+        if (!soundPlaying) { // check if a sound is not already playing
+          playSound('audio/test_sound.mp3');
+          previousValues['gts_2'] = currentValue;
+          soundPlaying = true; // set the flag to true
+        }
+      }
+    });
+
+    $('#gts_3').load('gts3.php', function(response, status, xhr) {
+      var currentValue = $(this).text();
+      if (previousValues['gts_3'] !== currentValue) {
+        if (!soundPlaying) { // check if a sound is not already playing
+          playSound('audio/test_sound.mp3');
+          previousValues['gts_3'] = currentValue;
+          soundPlaying = true; // set the flag to true
+        }
+      }
+    });
+
+    $('#gts_4').load('gts4.php', function(response, status, xhr) {
+      var currentValue = $(this).text();
+      if (previousValues['gts_4'] !== currentValue) {
+        if (!soundPlaying) { // check if a sound is not already playing
+          playSound('audio/test_sound.mp3');
+          previousValues['gts_4'] = currentValue;
+          soundPlaying = true; // set the flag to true
+        }
+      }
+    });
+
+    $('#gts_5').load('gts5.php', function(response, status, xhr) {
+      var currentValue = $(this).text();
+      if (previousValues['gts_5'] !== currentValue) {
+        if (!soundPlaying) { // check if a sound is not already playing
+          playSound('audio/test_sound.mp3');
+          previousValues['gts_5'] = currentValue;
+          soundPlaying = true; // set the flag to true
+        }
+      }
+    });
+
+    $('#gts_6').load('gts6.php', function(response, status, xhr) {
+      var currentValue = $(this).text();
+      if (previousValues['gts_6'] !== currentValue) {
+        if (!soundPlaying) { // check if a sound is not already playing
+          playSound('audio/test_sound.mp3');
+          previousValues['gts_6'] = currentValue;
+          soundPlaying = true; // set the flag to true
+        }
+      }
+    });
+    // ... (rest of the code remains the same)
+
+  }, 1000);
+
+  function playSound(url) {
+    var audio = new Audio(url);
+    audio.play();
+    audio.onended = function() { // event listener for when the sound finishes playing
+      soundPlaying = false; // reset the flag to false
+    };
+  }
+});

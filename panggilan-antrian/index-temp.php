@@ -181,7 +181,7 @@
   <!-- Responsivevoice -->
   <!-- Get API Key -> https://responsivevoice.org/ -->
   <!-- <script src="https://code.responsivevoice.org/responsivevoice.js?key=jQZ2zcdq"></script> -->
-  <script src="https://code.responsivevoice.org/responsivevoice.js?key=xx9mXCRU"></script>
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=WxSg6wJK"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
@@ -257,24 +257,24 @@
         // buat variabel untuk menampilkan data "id"
         var id = data["id"];
         // buat variabel untuk menampilkan audio bell antrian
-        var bell = document.getElementById('tingtung');
+        // var bell = document.getElementById('tingtung');
 
         // mainkan suara bell antrian
-        bell.pause();
-        bell.currentTime = 0;
-        bell.play();
+        // bell.pause();
+        // bell.currentTime = 0;
+        // bell.play();
 
         // set delay antara suara bell dengan suara nomor antrian
-        durasi_bell = bell.duration * 770;
+        // durasi_bell = bell.duration * 770;
 
         // mainkan suara nomor antrian
-        setTimeout(function() {
-          responsiveVoice.speak("Nomor Antrian, " + data["no_antrian"] + ", menuju, loket, pelayanan", "Indonesian Female", {
-            rate: 0.9,
-            pitch: 1,
-            volume: 1.5
-          });
-        }, durasi_bell);
+        // setTimeout(function() {
+        //   responsiveVoice.speak("Nomor Antrian, " + data["no_antrian"] + ", menuju, loket, pelayanan", "Indonesian Female", {
+        //     rate: 0.9,
+        //     pitch: 1,
+        //     volume: 1.5
+        //   });
+        // }, durasi_bell);
 
         // proses update data
         $.ajax({

@@ -130,20 +130,53 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
  
+  <!-- dimitri 1 section -->
   <script type="text/javascript">
-  $(document).ready(function() {
+    $(document).ready(function() {
+      // reload PHP files every 1000ms
+      setInterval(function() {
+        for (var i = 1; i <= 6; i++) {
+          $('#gts_' + i).load('gts' + i + '.php', function(response, status, xhr) {
+            var currentValue = $(this).text();
+            var statusPanggilan = $(this).data('status-panggilan');
+            if (statusPanggilan === '1') {
+              playSound('audio/tingtung.mp3');
+              $.ajax({
+                type: 'POST',
+                url: 'update_status_panggilan.php',
+                data: { id: $(this).attr('id'), status_panggilan: '0' }
+              });
+            }
+          });
+        }
+      }, 1000);
 
-    // reload PHP files every second
-    setInterval(function() {
-      $('#gts_1').load('gts1.php');
-      $('#gts_2').load('gts2.php');
-      $('#gts_3').load('gts3.php');
-      $('#gts_4').load('gts4.php');
-      $('#gts_5').load('gts5.php');
-      $('#gts_6').load('gts6.php');
-    }, 1000);
-  });
-</script>
+      function playSound(url) {
+        var audio = new Audio(url);
+        audio.play();
+        audio.onended = function() { // event listener for when the sound finishes playing
+          soundPlaying = false; // reset the flag to false
+        };
+      }
+    });
+  </script>
+
+  <!-- reload gts section -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+      // reload PHP files every second
+      setInterval(function() {
+        $('#gts_1').load('gts1.php');
+        $('#gts_2').load('gts2.php');
+        $('#gts_3').load('gts3.php');
+        $('#gts_4').load('gts4.php');
+        $('#gts_5').load('gts5.php');
+        $('#gts_6').load('gts6.php');
+      }, 1000);
+      console.log("reload gts actived");
+    });
+  </script>
 </body>
 
 </html>
