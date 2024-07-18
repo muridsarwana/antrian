@@ -129,7 +129,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
  
-  <!-- <script type="text/javascript">
+  <script type="text/javascript">
   $(document).ready(function() {
 
     // reload PHP files every second
@@ -142,40 +142,72 @@
       $('#gts_6').load('gts6.php');
     }, 1000);
   });
-</script> -->
-
-<script>
-  $(document).ready(function() {
-  // reload PHP files every second
-  setInterval(function() {
-    $('#gts_1').load('gts.php', function() {
-      changeColor($('#gts_1'));
-    });
-    $('#gts_2').load('gts2.php', function() {
-      changeColor($('#gts_2'));
-    });
-    $('#gts_3').load('gts3.php', function() {
-      changeColor($('#gts_3'));
-    });
-    $('#gts_4').load('gts4.php', function() {
-      changeColor($('#gts_4'));
-    });
-    $('#gts_5').load('gts5.php', function() {
-      changeColor($('#gts_5'));
-    });
-    $('#gts_6').load('gts6.php', function() {
-      changeColor($('#gts_6'));
-    });
-  }, 1000);
-});
-
-function changeColor(element) {
-  element.addClass('change-color');
-  setTimeout(function() {
-    element.removeClass('change-color');
-  }, 3000);
-}
 </script>
+
+<audio id="audioPlayer" src="../assets/audio/tingtung.mp3"></audio>
+
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=WxSg6wJK"></script>
+    <script>
+        function fetchDataAndProcess() {
+            fetch('../callback/cb.php')
+                .then(response => {
+                    console.log('Fetch response status:', response.status);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.error) {
+                        console.error('Server error:', data.error);
+                        setTimeout(fetchDataAndProcess, 1000); // Retry after 1 second
+                    } else {
+                        // Play sound
+                        document.getElementById('audioPlayer').play();
+
+                        // Add event listener to wait for the audio to finish playing
+                        audioPlayer.onended = function() {
+                            // Delay 700ms before speaking
+                            setTimeout(function() {
+                                speakData(data);
+                            }, 700);
+                        };
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    setTimeout(fetchDataAndProcess, 1000); // Retry after 1 second
+                });
+        }
+
+        function speakData(data) {
+            // Map kode_bidang to its corresponding string
+            let kodeBidangMap = {
+    1: 'sekretariat',
+    2: 'pembinaan s m a',
+    3: 'pembinaan s m k',
+    4: 'pembinaan diksus',
+    5: 'pembinaan kebudayaan',
+    6: 'ketenagaan'
+};
+
+            // Construct the message to speak
+            let message = `Nomor Antrian ${data.no_antrian}, menuju loket pelayanan ${kodeBidangMap[data.kode_bidang]}`;
+
+            // Speak using ResponsiveVoice.js
+            responsiveVoice.speak(message, 'Indonesian Female', {
+                rate: 0.9,
+                pitch: 1,
+                volume: 1 // Adjust volume as needed
+            });
+
+            // Repeat every 1000ms
+            setTimeout(fetchDataAndProcess, 6000);
+        }
+
+        // Start fetching and processing data on page load
+        fetchDataAndProcess();
+    </script>
 
 </body>
 
