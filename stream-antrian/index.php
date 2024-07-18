@@ -5,11 +5,9 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Aplikasi Antrian Berbasis Web">
-  <meta name="author" content="Indra Styawantoro">
 
   <!-- Title -->
-  <title>Aplikasi Antrian Berbasis Web</title>
+  <title>monitor antrian</title>
 
   <!-- Favicon icon -->
   <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
@@ -33,12 +31,12 @@
       <div class="row justify-content-lg-center">
         <div class="col-lg mb-4">
           <!-- judul halaman -->
-          <!-- <div class="px-4 py-3 mb-4 bg-white rounded-2 shadow-sm">
+          <div class="px-4 py-3 mb-4 bg-white rounded-2 shadow-sm">
             <div class="d-flex align-items-center me-md-auto">
               <i class="bi-people-fill text-success me-3 fs-3"></i>
               <h1 class="h5 pt-2">Nomor Antrian</h1>
             </div>
-          </div> -->
+          </div>
 
           <!-- Queue Section -->
           <div class="row mb-4">
@@ -124,14 +122,6 @@
     </div>
   </main>
 
-  <!-- Footer -->
-  <!-- <footer class="footer mt-auto py-4">
-    <div class="container">
-      <div class="copyright text-center mb-2 mb-md-0">
-        versi alpha - 0.1 (sprint ed.)
-      </div>
-    </div>
-  </footer> -->
 
   <!-- jQuery Core -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -139,7 +129,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
  
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
   $(document).ready(function() {
 
     // reload PHP files every second
@@ -152,7 +142,41 @@
       $('#gts_6').load('gts6.php');
     }, 1000);
   });
+</script> -->
+
+<script>
+  $(document).ready(function() {
+  // reload PHP files every second
+  setInterval(function() {
+    $('#gts_1').load('gts.php', function() {
+      changeColor($('#gts_1'));
+    });
+    $('#gts_2').load('gts2.php', function() {
+      changeColor($('#gts_2'));
+    });
+    $('#gts_3').load('gts3.php', function() {
+      changeColor($('#gts_3'));
+    });
+    $('#gts_4').load('gts4.php', function() {
+      changeColor($('#gts_4'));
+    });
+    $('#gts_5').load('gts5.php', function() {
+      changeColor($('#gts_5'));
+    });
+    $('#gts_6').load('gts6.php', function() {
+      changeColor($('#gts_6'));
+    });
+  }, 1000);
+});
+
+function changeColor(element) {
+  element.addClass('change-color');
+  setTimeout(function() {
+    element.removeClass('change-color');
+  }, 3000);
+}
 </script>
+
 </body>
 
 </html>

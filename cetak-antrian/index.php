@@ -9,7 +9,7 @@
   <meta name="author" content="Indra Styawantoro">
 
   <!-- Title -->
-  <title>Aplikasi Antrian Berbasis Web</title>
+  <title>cetak antrian</title>
 
   <!-- Favicon icon -->
   <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
