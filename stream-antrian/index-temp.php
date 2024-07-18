@@ -140,7 +140,7 @@
             var currentValue = $(this).text();
             var statusPanggilan = $(this).data('status-panggilan');
             if (statusPanggilan === '1') {
-              playSound('audio/tingtung.mp3');
+              playSound('../audio/tingtung.mp3');
               $.ajax({
                 type: 'POST',
                 url: 'update_status_panggilan.php',
