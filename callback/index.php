@@ -22,49 +22,39 @@
                 .then(data => {
                     if (data.error) {
                         console.error('Server error:', data.error);
-                        setTimeout(fetchDataAndProcess, 3000); // Retry after 1 second
+                        setTimeout(fetchDataAndProcess, 1000); // Retry after 1 second
                     } else {
                         // Play sound
                         document.getElementById('audioPlayer').play();
 
-                        // Delay 700ms before speaking
-                        setTimeout(function() {
-                            speakData(data);
-                        }, 700);
+                        // Add event listener to wait for the audio to finish playing
+                        audioPlayer.onended = function() {
+                            // Delay 700ms before speaking
+                            setTimeout(function() {
+                                speakData(data);
+                            }, 700);
+                        };
                     }
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
-                    setTimeout(fetchDataAndProcess, 3000); // Retry after 1 second
+                    setTimeout(fetchDataAndProcess, 1000); // Retry after 1 second
                 });
         }
 
         function speakData(data) {
             // Map kode_bidang to its corresponding string
-            let kode_bidang_string = '';
-            switch (data.kode_bidang) {
-                case 1:
-                    kode_bidang_string = 'sekretariat';
-                    break;
-                case 2:
-                    kode_bidang_string = 'pembinaan s m a';
-                    break;
-                case 3:
-                    kode_bidang_string = 'pembinaan s m k';
-                    break;
-                case 4:
-                    kode_bidang_string = 'pembinaan diksus';
-                    break;
-                case 5:
-                    kode_bidang_string = 'pembinaan kebudayaan';
-                    break;
-                case 6:
-                    kode_bidang_string = 'ketenagaan';
-                    break;
-            }
+            let kodeBidangMap = {
+    1: 'sekretariat',
+    2: 'pembinaan s m a',
+    3: 'pembinaan s m k',
+    4: 'pembinaan diksus',
+    5: 'pembinaan kebudayaan',
+    6: 'ketenagaan'
+};
 
             // Construct the message to speak
-            let message = `Nomor Antrian ${data.no_antrian}, menuju loket pelayanan ${kode_bidang_string}`;
+            let message = `Nomor Antrian ${data.no_antrian}, menuju loket pelayanan ${kodeBidangMap[data.kode_bidang]}`;
 
             // Speak using ResponsiveVoice.js
             responsiveVoice.speak(message, 'Indonesian Female', {
@@ -74,7 +64,7 @@
             });
 
             // Repeat every 1000ms
-            setTimeout(fetchDataAndProcess, 3000);
+            setTimeout(fetchDataAndProcess, 6000);
         }
 
         // Start fetching and processing data on page load
