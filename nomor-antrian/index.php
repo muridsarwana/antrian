@@ -149,11 +149,14 @@
   </main>
 
   <!-- Footer -->
-  <!-- <footer class="footer mt-auto py-4">
+  <footer class="footer mt-auto py-4">
     <div class="container">
-
+      <!-- copyright -->
+      <div class="copyright text-center mb-2 mb-md-0">
+        &copy; 2021 - <a href="https://www.indrasatya.com/" target="_blank" class="text-danger text-decoration-none">www.indrasatya.com</a>. All rights reserved.
+      </div>
     </div>
-  </footer> -->
+  </footer>
 
   <!-- jQuery Core -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

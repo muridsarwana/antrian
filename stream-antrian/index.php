@@ -124,6 +124,15 @@
     </div>
   </main>
 
+  <!-- Footer -->
+  <!-- <footer class="footer mt-auto py-4">
+    <div class="container">
+      <div class="copyright text-center mb-2 mb-md-0">
+        versi alpha - 0.1 (sprint ed.)
+      </div>
+    </div>
+  </footer> -->
+
   <!-- jQuery Core -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <!-- Popper and Bootstrap JS -->
@@ -135,7 +144,7 @@
 
     // reload PHP files every second
     setInterval(function() {
-      $('#gts_1').load('gts1.php');
+      $('#gts_1').load('gts.php');
       $('#gts_2').load('gts2.php');
       $('#gts_3').load('gts3.php');
       $('#gts_4').load('gts4.php');

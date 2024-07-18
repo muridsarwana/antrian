@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Title -->
-  <title>Aplikasi Antrian Berbasis Web</title>
+  <title>panggilan temp</title>
 
   <!-- Favicon icon -->
   <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
@@ -159,14 +159,6 @@
     </div>
   </main>
 
-  <!-- Footer -->
-  <!-- <footer class="footer mt-auto py-4">
-    <div class="container">
-      <hr class="my-4">
-      
-    </div>
-  </footer> -->
-
   <!-- load file audio bell antrian -->
   <audio id="tingtung" src="../assets/audio/tingtung.mp3"></audio>
 
@@ -232,11 +224,13 @@
               // jika data "status = 0"
               else if (data["status"] === "0") {
                 // tampilkan button panggil
+                // var btn = "<button onclick=\"sendPlayCommand()\" class=\"btn btn-success btn-sm rounded-circle\"><i class=\"bi-mic-fill\"></i></button>";
                 var btn = "<button class=\"btn btn-success btn-sm rounded-circle\"><i class=\"bi-mic-fill\"></i></button>";
               } 
               // jika data "status = 1"
               else if (data["status"] === "1") {
                 // tampilkan button ulangi panggilan
+                // var btn = "<button onclick=\"sendPlayCommand()\" class=\"btn btn-secondary btn-sm rounded-circle\"><i class=\"bi-mic-fill\"></i></button>";
                 var btn = "<button class=\"btn btn-secondary btn-sm rounded-circle\"><i class=\"bi-mic-fill\"></i></button>";
               };
               return btn;
@@ -254,34 +248,26 @@
       $('#tabel-antrian tbody').on('click', 'button', function() {
         // ambil data dari datatables 
         var data = table.row($(this).parents('tr')).data();
-        // buat variabel untuk menampilkan data "id"
-        var id = data["id"];
-        // buat variabel untuk menampilkan audio bell antrian
-        // var bell = document.getElementById('tingtung');
-
-        // mainkan suara bell antrian
-        // bell.pause();
-        // bell.currentTime = 0;
-        // bell.play();
-
-        // set delay antara suara bell dengan suara nomor antrian
-        // durasi_bell = bell.duration * 770;
-
-        // mainkan suara nomor antrian
-        // setTimeout(function() {
-        //   responsiveVoice.speak("Nomor Antrian, " + data["no_antrian"] + ", menuju, loket, pelayanan", "Indonesian Female", {
-        //     rate: 0.9,
-        //     pitch: 1,
-        //     volume: 1.5
-        //   });
-        // }, durasi_bell);
+        
+        // send data to callback table
+        $.ajax({
+          type: "POST",
+          url: "../TEST/jamu_tambah.php",
+          data: {
+            id_jamu: data["id"],
+            no_antrian: data["no_antrian"],
+            kode_bidang: data["kode_bidang"]
+          }
+        });
 
         // proses update data
+        var id = data["id"];
         $.ajax({
           type: "POST",               // mengirim data dengan method POST
           url: "update.php",          // url file proses update data
           data: { id: id }            // tentukan data yang dikirim
         });
+
       });
 
       // auto reload data antrian setiap 1 detik untuk menampilkan data secara realtime
@@ -294,6 +280,15 @@
       }, 1000);
     });
   </script>
+  <!-- <script>
+    function sendPlayCommand() {
+        fetch('../TEST/play_sound.php', {
+            method: 'POST'
+        })
+        .then(response => response.text())
+        .then(data => console.log(data));
+    }
+</script> -->
 </body>
 
 </html>

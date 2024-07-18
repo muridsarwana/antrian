@@ -32,7 +32,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             checkForPlayCommand(); // Initial check
-            setInterval(checkForPlayCommand, 500); // Check every seconds
+            setInterval(checkForPlayCommand, 3000); // Check every 3 seconds
         });
     </script>
 </body>

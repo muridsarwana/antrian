@@ -130,35 +130,20 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
  
-  <!-- dimitri 1 section -->
-  <script type="text/javascript">
-    $(document).ready(function() {
-      // reload PHP files every 1000ms
-      setInterval(function() {
-        for (var i = 1; i <= 6; i++) {
-          $('#gts_' + i).load('gts' + i + '.php', function(response, status, xhr) {
-            var currentValue = $(this).text();
-            var statusPanggilan = $(this).data('status-panggilan');
-            if (statusPanggilan === '1') {
-              playSound('../audio/tingtung.mp3');
-              $.ajax({
-                type: 'POST',
-                url: 'update_status_panggilan.php',
-                data: { id: $(this).attr('id'), status_panggilan: '0' }
-              });
-            }
-          });
+  <script>
+    function checkForPlayCommand() {
+      fetch('play_sound.php')
+      .then(response => response.text())
+      .then(data => {
+        if (data === 'playSound') {
+          const audioElement = document.createElement('audio');
+          audioElement.setAttribute('src', '../assets/audio/test_sound.mp3');
+          audioElement.play();
         }
-      }, 1000);
+      });
+    }
 
-      function playSound(url) {
-        var audio = new Audio(url);
-        audio.play();
-        audio.onended = function() { // event listener for when the sound finishes playing
-          soundPlaying = false; // reset the flag to false
-        };
-      }
-    });
+    setInterval(checkForPlayCommand, 1000); // Check every seconds
   </script>
 
   <!-- reload gts section -->

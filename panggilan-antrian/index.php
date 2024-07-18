@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Title -->
-  <title>Aplikasi Antrian Berbasis Web</title>
+  <title>panggilan</title>
 
   <!-- Favicon icon -->
   <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
@@ -181,7 +181,7 @@
   <!-- Responsivevoice -->
   <!-- Get API Key -> https://responsivevoice.org/ -->
   <!-- <script src="https://code.responsivevoice.org/responsivevoice.js?key=jQZ2zcdq"></script> -->
-  <script src="https://code.responsivevoice.org/responsivevoice.js?key=xx9mXCRU"></script>
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=WxSg6wJK"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
@@ -272,7 +272,7 @@
           responsiveVoice.speak("Nomor Antrian, " + data["no_antrian"] + ", menuju, loket, pelayanan", "Indonesian Female", {
             rate: 0.9,
             pitch: 1,
-            volume: 1.5
+            volume: 2.5
           });
         }, durasi_bell);
 
