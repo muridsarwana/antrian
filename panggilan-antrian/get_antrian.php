@@ -9,9 +9,19 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH
   $tanggal = gmdate("Y-m-d", time() + 60 * 60 * 7);
 
   // sql statement untuk menampilkan data dari tabel "tbl_antrian" berdasarkan "tanggal"
-  $query = mysqli_query($mysqli, "SELECT id, CONCAT(no_antrian, ' - ', kode_bidang) AS no_antrian, kode_bidang, status FROM tbl_antrian 
-                                  WHERE tanggal='$tanggal'")
-                                  or die('Ada kesalahan pada query tampil data : ' . mysqli_error($mysqli));
+  $query = mysqli_query($mysqli, "SELECT 
+                                    id, 
+                                    no_antrian AS original_no_antrian, 
+                                    CONCAT(no_antrian, ' - ', kode_bidang) AS dftr_antrian, 
+                                    kode_bidang, 
+                                    status 
+                                  FROM 
+                                    tbl_antrian 
+                                  WHERE 
+                                    tanggal='$tanggal' 
+                                  ORDER BY 
+                                    CAST(no_antrian AS UNSIGNED) DESC")
+                                    or die('Ada kesalahan pada query tampil data : ' . mysqli_error($mysqli));
   // ambil jumlah baris data hasil query
   $rows = mysqli_num_rows($query);
 
@@ -34,14 +44,15 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH
     // ambil data hasil query
     while ($row = mysqli_fetch_assoc($query)) {
       $data['id']           = $row["id"];
-      $data['no_antrian']   = $row["no_antrian"];
+      $data['original_no_antrian'] = $row["original_no_antrian"];
+      $data['dftr_antrian']   = $row["dftr_antrian"];
       $data['status']       = $row["status"];
       $data['kode_bidang']  = $row["kode_bidang"];
 
       // replace kode_bidang value with corresponding label
-      $no_antrian_parts = explode(' - ', $data['no_antrian']);
+      $no_antrian_parts = explode(' - ', $data['dftr_antrian']);
       $kode_bidang = $no_antrian_parts[1];
-      $data['no_antrian'] = $no_antrian_parts[0] . ' - ' . $kode_bidang_map[$kode_bidang];
+      $data['dftr_antrian'] = $no_antrian_parts[0] . ' - ' . $kode_bidang_map[$kode_bidang];
 
       array_push($response["data"], $data);
     }
@@ -56,7 +67,8 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH
 
     // buat data kosong untuk ditampilkan
     $data['id']         = "";
-    $data['no_antrian'] = "-";
+    $data['original_no_antrian'] = "";
+    $data['dftr_antrian'] = "-";
     $data['status']     = "";
     $data['kode_bidang'] = "";
 

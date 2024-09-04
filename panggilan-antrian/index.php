@@ -146,6 +146,7 @@
             <table id="tabel-antrian" class="table table-bordered table-striped table-hover" width="100%">
               <thead>
                 <tr>
+                  <th>Pseudo Antrian</th>
                   <th>Nomor Antrian</th>
                   <th>Status</th>
                   <th>Kode Bidang</th>
@@ -201,12 +202,22 @@
       var table = $('#tabel-antrian').DataTable({
         "lengthChange": false,              // non-aktifkan fitur "lengthChange"
         "searching": true,                 // non-aktifkan fitur "Search"
-        "ajax": "get_antrian.php",          // url file proses tampil data dari database
+        "ajax": {
+          "url": "get_antrian.php",
+          "dataSrc": function(json) {
+            return json.data;
+          }
+        },          // url file proses tampil data dari database
         // menampilkan data
         "columns": [{
-            "data": "no_antrian",
+            "data": "original_no_antrian", // original no_antrian value
+            "visible": false
+          },
+          {
+            "data": "dftr_antrian", // concatenated value
             "width": '250px',
-            "className": 'text-center'
+            "className": 'text-center',
+            "orderable": false
           },
           {
             "data": "status",
@@ -215,7 +226,8 @@
           {
             "data": "kode_bidang",
             "width": '150px',
-            "className": 'text-center'
+            "className": 'text-center',
+            "orderable": false
           },
           {
             "data": null,
@@ -245,9 +257,10 @@
           },
         ],
         "order": [
-          [0, "desc"]             // urutkan data berdasarkan "no_antrian" secara descending
+          [0, "desc"] // urutkan data berdasarkan "no_antrian" secara descending
         ],
-        "iDisplayLength": 10,     // tampilkan 10 data per halaman
+
+        "iDisplayLength": 20,     // tampilkan 20 data per halaman
       });
 
       // panggilan antrian dan update data
@@ -269,7 +282,7 @@
 
         // mainkan suara nomor antrian
         setTimeout(function() {
-          responsiveVoice.speak("Nomor Antrian, " + data["no_antrian"] + ", menuju, loket, pelayanan", "Indonesian Female", {
+          responsiveVoice.speak("Nomor Antrian, " + data["dftr_antrian"] + ", menuju, loket, pelayanan", "Indonesian Female", {
             rate: 0.9,
             pitch: 1,
             volume: 2.5
