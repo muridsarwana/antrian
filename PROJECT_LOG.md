@@ -8,6 +8,9 @@
 - [ ] Implement proper error handling for database connections
 - [ ] Add input validation for all user inputs
 - [ ] Optimize database queries with prepared statements for security
+- [ ] **URGENT**: Normalize cetak-antrian page (recent changes caused issues)
+- [ ] **URGENT**: Normalize panggilan-antrian page (affected by report_data changes)
+- [ ] **URGENT**: Normalize stream-antrian page (side effects from recent development)
 
 ### Medium Priority  
 - [ ] Refactor duplicate code across queue management modules
@@ -15,6 +18,8 @@
 - [ ] Add proper documentation comments to PHP functions
 - [ ] Create proper API endpoints structure
 - [ ] Implement logging system for debugging
+- [ ] **NEW**: Perfect report_data functionality for well-tailored PDF export
+- [ ] Test all pages after report_data normalization
 
 ### Low Priority
 - [ ] Optimize CSS files (remove duplicates)
@@ -107,3 +112,14 @@ This is a web-based queue management system designed for government offices with
 2. Implement proper caching for frequently accessed data
 3. Consolidate duplicate CSS and JavaScript files
 4. Add database indexing for queue operations
+
+### 16 October 2025
+- **Branch Management**: Created new branch `test-range` for testing before merging to master
+- **Development Issue Identified**: Recent report_data page development caused unintended side effects on other pages
+- **Pages Affected**: cetak-antrian, panggilan-antrian, and stream-antrian require normalization
+- **Action Plan**: Added urgent todo items to fix affected pages and perfect report_data PDF export functionality
+- **Commit**: "testing branch before master" - preserving current state before major fixes
+- **Stable Codebase Update**: Merged most stable and running version from antrian2 folder into test-range branch
+- **Files Updated**: Multiple core files updated with stable versions from antrian2 development environment
+- **New Files Added**: `do_print backup.php`, `query` file for reference
+- **Ready for Development**: test-range branch now contains the most stable codebase for further development
