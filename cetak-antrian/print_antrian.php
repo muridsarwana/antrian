@@ -42,6 +42,6 @@ $Data .= "\n";
 $Data .= "--------------------------\n";
 fwrite($handle, $Data);
 fclose($handle);
-copy($file, "//localhost/POS58 Printer(2)");  # Lakukan cetak
+copy($file, "//localhost/POS58 Printer");  # Lakukan cetak
 unlink($file);
 ?>

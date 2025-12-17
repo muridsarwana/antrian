@@ -131,82 +131,173 @@
  
   <script type="text/javascript">
   $(document).ready(function() {
+    // Store active AJAX requests to abort old ones
+    let activeRequests = [];
 
-    // reload PHP files every second
+    // Clear console every 5 minutes to prevent memory buildup
     setInterval(function() {
-      $('#gts_1').load('gts.php');
-      $('#gts_2').load('gts2.php');
-      $('#gts_3').load('gts3.php');
-      $('#gts_4').load('gts4.php');
-      $('#gts_5').load('gts5.php');
-      $('#gts_6').load('gts6.php');
-    }, 1000);
+      if (console.clear) console.clear();
+    }, 300000);
+
+    // Reload PHP files every 2 seconds (reduced frequency)
+    setInterval(function() {
+      // Abort pending requests to prevent memory leak
+      activeRequests.forEach(function(xhr) {
+        if (xhr && xhr.abort) xhr.abort();
+      });
+      activeRequests = [];
+
+      // Load queue data with cleanup
+      activeRequests.push($.ajax({
+        url: 'gts.php',
+        cache: false,
+        success: function(data) { $('#gts_1').html(data); }
+      }));
+      activeRequests.push($.ajax({
+        url: 'gts2.php',
+        cache: false,
+        success: function(data) { $('#gts_2').html(data); }
+      }));
+      activeRequests.push($.ajax({
+        url: 'gts3.php',
+        cache: false,
+        success: function(data) { $('#gts_3').html(data); }
+      }));
+      activeRequests.push($.ajax({
+        url: 'gts4.php',
+        cache: false,
+        success: function(data) { $('#gts_4').html(data); }
+      }));
+      activeRequests.push($.ajax({
+        url: 'gts5.php',
+        cache: false,
+        success: function(data) { $('#gts_5').html(data); }
+      }));
+      activeRequests.push($.ajax({
+        url: 'gts6.php',
+        cache: false,
+        success: function(data) { $('#gts_6').html(data); }
+      }));
+    }, 2000); // Changed from 1000ms to 2000ms
   });
 </script>
 
-<audio id="audioPlayer" src="../assets/audio/tingtung.mp3"></audio>
+<audio id="audioPlayer" src="../assets/audio/tingtung.mp3" preload="auto"></audio>
 
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=WxSg6wJK"></script>
     <script>
+        // Global variables to prevent memory leaks
+        const audioPlayer = document.getElementById('audioPlayer');
+        let fetchTimeout = null;
+        let abortController = null;
+        let isProcessing = false;
+
+        // Map kode_bidang outside function to avoid recreation
+        const kodeBidangMap = {
+            1: 'sekretariat',
+            2: 'pembinaan s m a',
+            3: 'pembinaan s m k',
+            4: 'pembinaan diksus',
+            5: 'pembinaan kebudayaan',
+            6: 'ketenagaan'
+        };
+
+        // Single audio ended handler (set once)
+        audioPlayer.addEventListener('ended', function() {
+            if (window.pendingSpeakData) {
+                setTimeout(function() {
+                    speakData(window.pendingSpeakData);
+                    window.pendingSpeakData = null;
+                }, 700);
+            }
+        });
+
         function fetchDataAndProcess() {
-            fetch('../callback/cb.php')
+            // Prevent multiple simultaneous fetches
+            if (isProcessing) return;
+            isProcessing = true;
+
+            // Clear any pending timeout
+            if (fetchTimeout) {
+                clearTimeout(fetchTimeout);
+                fetchTimeout = null;
+            }
+
+            // Abort previous fetch if still pending
+            if (abortController) {
+                abortController.abort();
+            }
+            abortController = new AbortController();
+
+            fetch('../callback/cb.php', {
+                signal: abortController.signal,
+                cache: 'no-store'
+            })
                 .then(response => {
-                    console.log('Fetch response status:', response.status);
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
                     return response.json();
                 })
                 .then(data => {
+                    isProcessing = false;
                     if (data.error) {
-                        console.error('Server error:', data.error);
-                        setTimeout(fetchDataAndProcess, 1000); // Retry after 1 second
+                        // No callback data, retry after 1 second
+                        fetchTimeout = setTimeout(fetchDataAndProcess, 1000);
                     } else {
+                        // Store data for audio ended handler
+                        window.pendingSpeakData = data;
+                        
                         // Play sound
-                        document.getElementById('audioPlayer').play();
-
-                        // Add event listener to wait for the audio to finish playing
-                        audioPlayer.onended = function() {
-                            // Delay 700ms before speaking
-                            setTimeout(function() {
-                                speakData(data);
-                            }, 700);
-                        };
+                        audioPlayer.currentTime = 0; // Reset audio
+                        audioPlayer.play().catch(function(e) {
+                            console.warn('Audio play failed:', e.message);
+                            // If audio fails, speak immediately
+                            speakData(data);
+                        });
                     }
                 })
                 .catch(error => {
-                    console.error('Error fetching data:', error);
-                    setTimeout(fetchDataAndProcess, 1000); // Retry after 1 second
+                    isProcessing = false;
+                    if (error.name !== 'AbortError') {
+                        console.warn('Fetch error:', error.message);
+                        fetchTimeout = setTimeout(fetchDataAndProcess, 1000);
+                    }
                 });
         }
 
         function speakData(data) {
-            // Map kode_bidang to its corresponding string
-            let kodeBidangMap = {
-    1: 'sekretariat',
-    2: 'pembinaan s m a',
-    3: 'pembinaan s m k',
-    4: 'pembinaan diksus',
-    5: 'pembinaan kebudayaan',
-    6: 'ketenagaan'
-};
+            // Cancel any pending speech
+            if (responsiveVoice.isPlaying()) {
+                responsiveVoice.cancel();
+            }
 
             // Construct the message to speak
-            let message = `Nomor Antrian ${data.no_antrian}, menuju loket pelayanan ${kodeBidangMap[data.kode_bidang]}`;
+            const message = `Nomor Antrian ${data.no_antrian}, menuju loket pelayanan ${kodeBidangMap[data.kode_bidang]}`;
 
             // Speak using ResponsiveVoice.js
             responsiveVoice.speak(message, 'Indonesian Female', {
                 rate: 0.9,
                 pitch: 1,
-                volume: 1 // Adjust volume as needed
+                volume: 1,
+                onend: function() {
+                    // Wait 6 seconds before next fetch
+                    fetchTimeout = setTimeout(fetchDataAndProcess, 6000);
+                }
             });
-
-            // Repeat every 1000ms
-            setTimeout(fetchDataAndProcess, 6000);
         }
 
         // Start fetching and processing data on page load
-        fetchDataAndProcess();
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchDataAndProcess();
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            if (fetchTimeout) clearTimeout(fetchTimeout);
+            if (abortController) abortController.abort();
+            if (responsiveVoice.isPlaying()) responsiveVoice.cancel();
+        });
     </script>
 
 </body>
